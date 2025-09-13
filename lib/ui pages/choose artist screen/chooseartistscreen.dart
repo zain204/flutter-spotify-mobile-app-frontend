@@ -2,15 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:spotify/domain/appcolors.dart';
 import 'package:spotify/domain/custom%20items/customtextfield.dart';
 import 'package:spotify/ui%20pages/choose%20artist%20screen/artistimg.dart';
+import 'package:spotify/ui%20pages/choose%20podcast%20screen/choosepodcastscreen.dart';
 
-class Chooseartistscreen extends StatelessWidget {
+class Chooseartistscreen extends StatefulWidget {
 
    Chooseartistscreen({super.key});
+
+  @override
+  State<Chooseartistscreen> createState() => _ChooseartistscreenState();
+}
+
+class _ChooseartistscreenState extends State<Chooseartistscreen> {
   final artistsearchcontroller = TextEditingController();
- 
+   List<int> selectedartist = [];
 
   @override
   Widget build(BuildContext context) {
+   
      List artist = [{
     "img":"assets/images/image 2.png",
      "name": "selena"
@@ -130,19 +138,52 @@ class Chooseartistscreen extends StatelessWidget {
                     crossAxisCount: 3,),
                     itemCount: artist.length,
                   itemBuilder: (context,index){
-                    return Column(
-                      children: [
-                        Artistimg(imagepath: artist[index]["img"],),
-                        Text(artist[index]["name"],style: TextStyle(color: Appcolors.whitecolor),),
-                     
-                      ],
+                    return InkWell(
+                      onTap: (){
+                        if (!selectedartist.contains(index)) {
+                          selectedartist.add(index);
+                          setState(() {
+                            
+                          });
+                        }
+                        else{
+                          selectedartist.remove(index);
+                          setState(() {
+                            
+                          });
+                        }
+                        
+                      },
+                      child: Column(
+                        children: [
+                          Artistimg(imagepath: artist[index]["img"], isselected: selectedartist.contains(index),),
+                          Text(artist[index]["name"],style: TextStyle(color: Appcolors.whitecolor),),
+                         
+                       
+                        ],
+                      ),
                     );
                   }),
+                        if (selectedartist.length >= 3)
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 100),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>Choosepodcastscreen()));
+              },
+              child: Text("Next"),
+            ),
+          ),
+        ),
+
                 ],
               ),
             )
         ],
       ),
+      
         
     );
   }
