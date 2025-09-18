@@ -3,6 +3,7 @@ import 'package:spotify/domain/appcolors.dart';
 import 'package:spotify/domain/custom%20items/customtextfield.dart';
 import 'package:spotify/ui%20pages/choose%20artist%20screen/artistimg.dart';
 import 'package:spotify/ui%20pages/choose%20podcast%20screen/choosepodcastscreen.dart';
+import 'package:spotify/ui%20pages/navigation%20bar/navscreen.dart';
 
 class Chooseartistscreen extends StatefulWidget {
 
@@ -164,14 +165,14 @@ class _ChooseartistscreenState extends State<Chooseartistscreen> {
                       ),
                     );
                   }),
-                        if (selectedartist.length >= 3)
+        if (selectedartist.length >= 3)
         Align(
           alignment: Alignment.bottomCenter,
           child: Padding(
             padding: const EdgeInsets.only(bottom: 100),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>Choosepodcastscreen()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>Navscreen()));
               },
               child: Text("Next"),
             ),

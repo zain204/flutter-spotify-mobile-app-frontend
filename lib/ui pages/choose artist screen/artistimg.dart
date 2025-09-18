@@ -26,7 +26,12 @@ class Artistimg extends StatelessWidget {
         
     ),
      child: isselected ? Center(
-      child: Icon(Icons.done),
+      
+      child: CircleAvatar(
+        backgroundColor: Colors.black.withOpacity(0.3),
+        radius: 14,
+        child: Icon(Icons.done,color: Colors.black),
+      ),
     ) : Container()
     
           );
